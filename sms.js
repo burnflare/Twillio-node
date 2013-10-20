@@ -1,8 +1,8 @@
 var sms = module.exports;
 
-var part1 = "Hi, this is a reminder to complete your 10 minutes of daily meditation. Your participant number is ";
-var part2 = ".\nThis is your day ";
-var part3 = " of meditation.\n\nRegards,\nBrenda"
+var part1 = "Hi, this is a reminder for you to complete your 10 minutes of daily meditation. Please remember to also fill up the daily questionnaire. You will find the link to the questionnaire in your email. Your participant number is ";
+var part2 = ".\nThis is Day ";
+var part3 = " of meditation"
 
 sms.send = function sms_send(req, res) {
 	res.json(200, {});
@@ -22,4 +22,9 @@ sms.send = function sms_send(req, res) {
 			});
 		});
 	});
+}
+
+sms.plusOne = function sms_plusOne(req, res) {
+	req.models.sms.find({ })
+	res.send(200, {});
 }
