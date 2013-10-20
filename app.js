@@ -20,7 +20,7 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(orm.express("mysql://root:root@localhost/sms", {
 	define: function(db, models, next) {
-		models.sms = db.define("sms", { name: { type: "text", size: 20 }, number: { type: "text", size: 20 },});
+		models.sms = db.define("sms", { name: { type: "text", size: 20 }, number: { type: "text", size: 20 }, day: { type: "number"}});
 
 		next();
 	}
@@ -32,7 +32,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.post('/send/', sms.send);
+app.get('/send/', sms.send);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
