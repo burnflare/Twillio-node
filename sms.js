@@ -1,7 +1,7 @@
 var sms = module.exports;
 
-var part1 = "Hi, this is a reminder for you to complete your 10 minutes of daily meditation. Please remember to also fill up the daily questionnaire. You will find the link to the questionnaire in your email. Your participant number is ";
-var part2 = ".\nThis is Day ";
+var part1 = "Hi, this is a reminder for you to complete your 10 minutes of daily meditation. Please remember to fill up the daily questionnaire - the link to the questionnaire is sent to your email. Your participant number is ";
+var part2 = ". This is Day ";
 var part3 = " of meditation"
 
 sms.send = function sms_send(req, res) {
