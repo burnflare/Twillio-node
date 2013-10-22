@@ -13,13 +13,14 @@ sms.send = function sms_send(req, res) {
 			var client = require('twilio')(accountSid, authToken);
   
   		  	// console.log(part1 + sms.name + part2 + sms.day + part3);
-			client.sms.messages.create({
-			    body: part1 + sms.name + part2,
-			    to: sms.number,
-			    from: "+1 720-408-2464"
-			}, function(err, message) {
-				console.log(message.sid);
-			});
+  		  	console.log(sms.name + sms.number);
+			// client.sms.messages.create({
+// 			    body: part1 + sms.name + part2,
+// 			    to: sms.number,
+// 			    from: "+1 720-408-2464"
+// 			}, function(err, message) {
+// 				console.log(message.sid);
+// 			});
 		});
 	});
 }
