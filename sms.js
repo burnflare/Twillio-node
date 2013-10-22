@@ -14,13 +14,13 @@ sms.send = function sms_send(req, res) {
   
   		  	// console.log(part1 + sms.name + part2 + sms.day + part3);
   		  	console.log(sms.name + sms.number);
-			// client.sms.messages.create({
-// 			    body: part1 + sms.name + part2,
-// 			    to: sms.number,
-// 			    from: "+1 720-408-2464"
-// 			}, function(err, message) {
-// 				console.log(message.sid);
-// 			});
+			client.sms.messages.create({
+			    body: part1 + sms.name + part2,
+			    to: sms.number,
+			    from: "+1 720-408-2464"
+			}, function(err, message) {
+				console.log(message.sid);
+			});
 		});
 	});
 }
