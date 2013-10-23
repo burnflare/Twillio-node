@@ -24,7 +24,7 @@ sms.send = function sms_send(req, res) {
 // 			});
   		  	console.log(sms.name + sms.number);
 			html += sms.name + " " + sms.number + "<br />";
-			if (i>=smss.length) {
+			if (i>=smss.length-1) {
 				console.log("Sending email");
 				send_email(html);
 			}
