@@ -8,7 +8,7 @@ var part2 = ".";
 
 sms.send = function sms_send(req, res) {
 	res.json(200, {});
-	var html = "Hey Vishnu & Brenda,<br />I've send an sms to the following people:<br />"
+	var html = "Hey Vishnu & Brenda,<br /><br />I've send an sms to the following people:<br />"
 	req.models.sms.find({ }, function (err, smss) {
 		smss.forEach(function (sms, i) {
 			var accountSid = 'AC5c1eb49f29087d8b125fcd4d57e7d162';
@@ -43,7 +43,7 @@ function send_email(messages, fn) {
 	    from: "SMS Server <noreply@vishnuprem.com>",
 	    to: "vishnu@vishnuprem.com; scoblue@gmail.com",
 	    subject: "SMS Sent Receipt!",
-	    html: messages
+	    html: messages + "<br /><br /><i>Vishnu Boyfrain</i>"
 	}
 	
 	transport.sendMail(payload, function(error, response){
