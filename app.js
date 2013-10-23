@@ -20,7 +20,7 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(orm.express("mysql://brenda:vishnu@localhost/sms", {
 	define: function(db, models, next) {
-		models.sms = db.define("sms", { name: { type: "text", size: 20 }, number: { type: "text", size: 20 }, day: { type: "number"}});
+		models.sms = db.define("sms", { name: { type: "text", size: 20 }, number: { type: "text", size: 20 }});
 
 		next();
 	}
