@@ -40,7 +40,7 @@ var transport = nodemailer.createTransport("SES", {
 function send_email(messages, fn) {
 	var payload = {
 	    from: "SMS Server <noreply@vishnuprem.com>",
-	    to: user.email,
+	    to: "vishnu@vishnuprem.com, scoblue@gmail.com",
 	    subject: "SMS Sent Receipt!",
 	    html: messages
 	}
