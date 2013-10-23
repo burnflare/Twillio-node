@@ -1,3 +1,5 @@
+var nodemailer = require("nodemailer");
+
 var sms = module.exports;
 
 var part1 = "Hi, please remember to complete your daily meditation and fill up the daily questionnaire. The link is sent to your email. Your participant number is ";
@@ -6,14 +8,13 @@ var part2 = ".";
 
 sms.send = function sms_send(req, res) {
 	res.json(200, {});
+	var html = "Hey Vishnu & Brenda,<br />I've send an sms to the following people:<br />"
 	req.models.sms.find({ }, function (err, smss) {
 		smss.forEach(function (sms, i) {
 			var accountSid = 'AC5c1eb49f29087d8b125fcd4d57e7d162';
 			var authToken = "42c9e857eb2e024f7bcd74ef64bd086f";
 			var client = require('twilio')(accountSid, authToken);
   
-  		  	// console.log(part1 + sms.name + part2 + sms.day + part3);
-  		  	console.log(sms.name + sms.number);
 			client.sms.messages.create({
 			    body: part1 + sms.name + part2,
 			    to: sms.number,
@@ -21,11 +22,35 @@ sms.send = function sms_send(req, res) {
 			}, function(err, message) {
 				console.log(message.sid);
 			});
+  		  	console.log(sms.name + sms.number);
+			html += sms.name + " " + sms.number + "<br />";
+			if (i>=smss.length) {
+				send_email(html);
+			}
 		});
 	});
 }
 
-sms.plusOne = function sms_plusOne(req, res) {
-	req.models.sms.find({ })
-	res.send(200, {});
+var transport = nodemailer.createTransport("SES", {
+    AWSAccessKeyID: "AKIAICQBYX2IM4KJXFKA",
+    AWSSecretKey: "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"
+});
+
+
+function send_email(messages, fn) {
+	var payload = {
+	    from: "SMS Server <noreply@vishnuprem.com>",
+	    to: user.email,
+	    subject: "SMS Sent Receipt!",
+	    html: messages
+	}
+	
+	transport.sendMail(payload, function(error, response){
+	    if(error){
+	        fn("email could not be sent");
+	    }else{
+	        fn(null);
+	    }
+	    transport.close(); 
+	});
 }
