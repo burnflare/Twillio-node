@@ -31,8 +31,8 @@ sms.send = function sms_send(req, res) {
 }
 
 var transport = nodemailer.createTransport("SES", {
-    AWSAccessKeyID: "AKIAICQBYX2IM4KJXFKA",
-    AWSSecretKey: "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"
+    AWSAccessKeyID: "",
+    AWSSecretKey: ""
 });
 
 
