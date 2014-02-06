@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -18,7 +17,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(orm.express("mysql://brenda:vishnu@localhost/sms", {
+app.use(orm.express("mysql://username:password@host/database", {
 	define: function(db, models, next) {
 		models.sms = db.define("sms", { name: { type: "text", size: 20 }, number: { type: "text", size: 20 }});
 
