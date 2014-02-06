@@ -2,13 +2,11 @@ var nodemailer = require("nodemailer");
 
 var sms = module.exports;
 
-var part1 = "Hi, please remember to complete your daily meditation and fill up the daily questionnaire. The link is sent to your email. Your participant number is ";
-var part2 = ".";
-// var part3 = " of meditation"
+var message = "This is my message to be sent"
 
 sms.send = function sms_send(req, res) {
 	res.json(200, {});
-	var html = "Hey Vishnu & Brenda,<br /><br />I've send an sms to the following people:<br />"
+	var html = "Hey Vishnu,<br /><br />I've send an sms to the following people:<br />"
 	req.models.sms.find({ }, function (err, smss) {
 		smss.forEach(function (sms, i) {
 			var accountSid = '';
@@ -16,7 +14,7 @@ sms.send = function sms_send(req, res) {
 			var client = require('twilio')(accountSid, authToken);
   
 			client.sms.messages.create({
-			    body: part1 + sms.name + part2,
+			    body: sms.name + message,
 			    to: sms.number,
 			    from: "+1 720-408-2464"
 			}, function(err, message) {
@@ -41,10 +39,10 @@ var transport = nodemailer.createTransport("SES", {
 function send_email(messages, fn) {
 	var payload = {
 	    from: "SMS Server <noreply@vishnuprem.com>",
-	    to: "scoblue@gmail.com",
+	    to: "vishnu@vishnuprem.com",
 		cc: "vishnu@vishnuprem.com",
 	    subject: "SMS Sent Receipt!",
-	    html: messages + "<br /><br /><i>Vishnu Boyfrain</i>"
+	    html: messages + "<br /><br /><i>Vishnu's SMS sent</i>"
 	}
 	
 	transport.sendMail(payload, function(error, response){
