@@ -11,8 +11,8 @@ sms.send = function sms_send(req, res) {
 	var html = "Hey Vishnu & Brenda,<br /><br />I've send an sms to the following people:<br />"
 	req.models.sms.find({ }, function (err, smss) {
 		smss.forEach(function (sms, i) {
-			var accountSid = 'AC5c1eb49f29087d8b125fcd4d57e7d162';
-			var authToken = "42c9e857eb2e024f7bcd74ef64bd086f";
+			var accountSid = '';
+			var authToken = "";
 			var client = require('twilio')(accountSid, authToken);
   
 			client.sms.messages.create({
