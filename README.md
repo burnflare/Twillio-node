@@ -1,4 +1,4 @@
-Twillio-node
+Twillio Node.js SMS Server
 ============
 This is a twillio SMS server running on node.  
 
